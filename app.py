@@ -19,6 +19,11 @@ class Person(db.Model):
       self.dateofbirth = dateofbirth
       self.zipcode = zipcode
 
+db.create_all()
+p = Person("Karl", "HT", "31/08/1987", "12345")
+db.session.add(p)
+db.session.commit()
+
 @app.route("/")
 def home():
-   return "Hello World"
+   return str(Person.query.all())
