@@ -18,3 +18,7 @@ class Person(db.Model):
       self.lastname = lastname
       self.dateofbirth = dateofbirth
       self.zipcode = zipcode
+
+@app.route("/")
+def home():
+   return "Hello World"
