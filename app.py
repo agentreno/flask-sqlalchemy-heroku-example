@@ -5,6 +5,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+db.create_all()
 
 class Person(db.Model):
    id = db.Column(db.Integer, primary_key=True)
@@ -19,11 +20,9 @@ class Person(db.Model):
       self.dateofbirth = dateofbirth
       self.zipcode = zipcode
 
-db.create_all()
-p = Person("Karl", "HT", "31/08/1987", "12345")
-db.session.add(p)
-db.session.commit()
-
 @app.route("/")
 def home():
+   p = Person("Karl", "HT", "31/08/1987", "12345")
+   db.session.add(p)
+   db.session.commit()
    return str(Person.query.all())
