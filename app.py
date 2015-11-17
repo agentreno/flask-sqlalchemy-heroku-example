@@ -22,4 +22,4 @@ class Person(db.Model):
 
 @app.route("/")
 def home():
-   return Person.query.all()[0].firstname
+   return " ".join([p.firstname for p in Person.query.all()])
