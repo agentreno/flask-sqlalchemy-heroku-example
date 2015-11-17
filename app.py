@@ -22,7 +22,4 @@ class Person(db.Model):
 
 @app.route("/")
 def home():
-   p = Person("Karl", "HT", "31/08/1987", "12345")
-   db.session.add(p)
-   db.session.commit()
-   return str(Person.query.all())
+   return Person.query.all()[0].firstname
